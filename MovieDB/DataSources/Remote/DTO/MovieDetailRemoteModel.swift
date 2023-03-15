@@ -11,7 +11,7 @@ struct MovieDetailRemoteModel: Codable {
     let adult: Bool?
     let backdropPath: String?
     let budget: Int?
-    let genres: [MovieGenre]?
+    let genres: [MovieGenreRemoteModel]?
     let homepage: String?
     let id: Int?
     let imdbID, originalLanguage, originalTitle, overview: String?
@@ -27,18 +27,14 @@ struct MovieDetailRemoteModel: Codable {
     enum CodingKeys: String, CodingKey {
         case adult
         case backdropPath = "backdrop_path"
-        case belongsToCollection = "belongs_to_collection"
         case budget, genres, homepage, id
         case imdbID = "imdb_id"
         case originalLanguage = "original_language"
         case originalTitle = "original_title"
         case overview, popularity
         case posterPath = "poster_path"
-        case productionCompanies = "production_companies"
-        case productionCountries = "production_countries"
         case releaseDate = "release_date"
         case revenue, runtime
-        case spokenLanguages = "spoken_languages"
         case status, tagline, title, video
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
@@ -46,7 +42,29 @@ struct MovieDetailRemoteModel: Codable {
 }
 
 // MARK: - MovieGenre
-struct MovieGenre: Codable {
+struct MovieGenreRemoteModel: Codable {
     let id: Int?
     let name: String?
+}
+
+
+extension MovieDetailRemoteModel: RemoteModel {
+  func transform() -> MovieDetails {
+    MovieDetails(id: id,
+                 title: title,
+                 releaseDate: releaseDate,
+                 genres: genres?.map{ $0.transform() },
+                 overview: overview,
+                 popularity: popularity,
+                 runtime: runtime,
+                 voteAverage: voteAverage,
+                 posterPath: posterPath,
+                 backdropPath: backdropPath)
+  }
+}
+
+extension MovieGenreRemoteModel: RemoteModel {
+  func transform() -> MovieGenre {
+    MovieGenre(id: id, name: name)
+  }
 }

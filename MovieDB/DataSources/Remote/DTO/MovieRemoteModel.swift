@@ -39,3 +39,14 @@ struct MovieRemoteModel: Codable {
         case voteCount = "vote_count"
     }
 }
+
+extension MovieRemoteModel: RemoteModel {
+  func transform() -> Movie {
+    Movie(id: id,
+          title: title,
+          originalTitle: originalTitle,
+          posterPath: posterPath,
+          releaseDate: releaseDate,
+          voteAverage: voteAverage)
+  }
+}

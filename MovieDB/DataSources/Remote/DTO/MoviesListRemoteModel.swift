@@ -22,3 +22,12 @@ struct MoviesListRemoteModel: Codable {
         case totalResults = "total_results"
     }
 }
+
+extension MoviesListRemoteModel: RemoteModel {
+  func transform() -> PaginatedList<Movie> {
+    PaginatedList(page: page,
+                  results: results?.map { $0.transform() },
+                  totalPages: totalPages,
+                  totalResults: totalResults)
+  }
+}
