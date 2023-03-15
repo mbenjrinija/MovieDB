@@ -27,6 +27,13 @@
 		EDF5F06329C2276500E8C730 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F06229C2276500E8C730 /* MovieDetails.swift */; };
 		EDF5F06529C229D200E8C730 /* RemoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F06429C229D200E8C730 /* RemoteModel.swift */; };
 		EDF5F06929C22D9A00E8C730 /* MoviesRemoteDataSource+Calls.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F06829C22D9A00E8C730 /* MoviesRemoteDataSource+Calls.swift */; };
+		EDF5F06D29C2315700E8C730 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F06C29C2315700E8C730 /* Coordinator.swift */; };
+		EDF5F06F29C231C200E8C730 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F06E29C231C200E8C730 /* AppCoordinator.swift */; };
+		EDF5F07529C233D400E8C730 /* MoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F07329C233D400E8C730 /* MoviesListViewController.swift */; };
+		EDF5F07629C233D400E8C730 /* MoviesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDF5F07429C233D400E8C730 /* MoviesListViewController.xib */; };
+		EDF5F07929C2354000E8C730 /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F07829C2354000E8C730 /* MoviesListViewModel.swift */; };
+		EDF5F08129C236E000E8C730 /* MoviesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F08029C236E000E8C730 /* MoviesRepository.swift */; };
+		EDF5F08329C238C900E8C730 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F08229C238C900E8C730 /* Loadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +59,13 @@
 		EDF5F06229C2276500E8C730 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		EDF5F06429C229D200E8C730 /* RemoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteModel.swift; sourceTree = "<group>"; };
 		EDF5F06829C22D9A00E8C730 /* MoviesRemoteDataSource+Calls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoviesRemoteDataSource+Calls.swift"; sourceTree = "<group>"; };
+		EDF5F06C29C2315700E8C730 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		EDF5F06E29C231C200E8C730 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		EDF5F07329C233D400E8C730 /* MoviesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewController.swift; sourceTree = "<group>"; };
+		EDF5F07429C233D400E8C730 /* MoviesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesListViewController.xib; sourceTree = "<group>"; };
+		EDF5F07829C2354000E8C730 /* MoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewModel.swift; sourceTree = "<group>"; };
+		EDF5F08029C236E000E8C730 /* MoviesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesRepository.swift; sourceTree = "<group>"; };
+		EDF5F08229C238C900E8C730 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +99,11 @@
 			isa = PBXGroup;
 			children = (
 				EDB5C96429C0F8C000EC3B77 /* DataSources */,
+				EDF5F07D29C2367100E8C730 /* Repositories */,
 				EDB5C97429C0FB9700EC3B77 /* Model */,
 				EDB5C97729C0FD0D00EC3B77 /* Utils */,
+				EDF5F07029C2339100E8C730 /* UI */,
+				EDF5F06A29C2313D00E8C730 /* CompositionRoot */,
 				EDB5C95029C0EF1400EC3B77 /* AppDelegate.swift */,
 				EDB5C95229C0EF1400EC3B77 /* SceneDelegate.swift */,
 				EDB5C95429C0EF1400EC3B77 /* ViewController.swift */,
@@ -152,6 +169,7 @@
 			children = (
 				EDB5C97A29C0FE1400EC3B77 /* Async.swift */,
 				EDB5C97829C0FD2700EC3B77 /* Constants.swift */,
+				EDF5F08229C238C900E8C730 /* Loadable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -169,6 +187,73 @@
 			children = (
 				EDB5C96E29C0F94600EC3B77 /* MoviesRemoteDataSource.swift */,
 				EDF5F06829C22D9A00E8C730 /* MoviesRemoteDataSource+Calls.swift */,
+			);
+			path = Movies;
+			sourceTree = "<group>";
+		};
+		EDF5F06A29C2313D00E8C730 /* CompositionRoot */ = {
+			isa = PBXGroup;
+			children = (
+				EDF5F06B29C2314E00E8C730 /* Configuration */,
+				EDF5F06E29C231C200E8C730 /* AppCoordinator.swift */,
+			);
+			path = CompositionRoot;
+			sourceTree = "<group>";
+		};
+		EDF5F06B29C2314E00E8C730 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				EDF5F06C29C2315700E8C730 /* Coordinator.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		EDF5F07029C2339100E8C730 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EDF5F07129C2339E00E8C730 /* Screens */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		EDF5F07129C2339E00E8C730 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				EDF5F07229C233A500E8C730 /* MoviesList */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		EDF5F07229C233A500E8C730 /* MoviesList */ = {
+			isa = PBXGroup;
+			children = (
+				EDF5F07329C233D400E8C730 /* MoviesListViewController.swift */,
+				EDF5F07429C233D400E8C730 /* MoviesListViewController.xib */,
+				EDF5F07829C2354000E8C730 /* MoviesListViewModel.swift */,
+			);
+			path = MoviesList;
+			sourceTree = "<group>";
+		};
+		EDF5F07D29C2367100E8C730 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				EDF5F07E29C236B700E8C730 /* Remote */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		EDF5F07E29C236B700E8C730 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				EDF5F07F29C236D400E8C730 /* Movies */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		EDF5F07F29C236D400E8C730 /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				EDF5F08029C236E000E8C730 /* MoviesRepository.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -234,6 +319,7 @@
 				EDB5C95D29C0EF1700EC3B77 /* LaunchScreen.storyboard in Resources */,
 				EDB5C95A29C0EF1700EC3B77 /* Assets.xcassets in Resources */,
 				EDB5C95829C0EF1400EC3B77 /* Main.storyboard in Resources */,
+				EDF5F07629C233D400E8C730 /* MoviesListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,14 +337,20 @@
 				EDB5C95129C0EF1400EC3B77 /* AppDelegate.swift in Sources */,
 				EDB5C97B29C0FE1400EC3B77 /* Async.swift in Sources */,
 				EDF5F06929C22D9A00E8C730 /* MoviesRemoteDataSource+Calls.swift in Sources */,
+				EDF5F07529C233D400E8C730 /* MoviesListViewController.swift in Sources */,
 				EDB5C97129C0FA0100EC3B77 /* MoviesListRemoteModel.swift in Sources */,
+				EDF5F06D29C2315700E8C730 /* Coordinator.swift in Sources */,
 				EDB5C97629C0FBA300EC3B77 /* Movie.swift in Sources */,
 				EDF5F06329C2276500E8C730 /* MovieDetails.swift in Sources */,
 				EDF5F06529C229D200E8C730 /* RemoteModel.swift in Sources */,
 				EDB5C97D29C1013F00EC3B77 /* MovieDetailRemoteModel.swift in Sources */,
+				EDF5F08129C236E000E8C730 /* MoviesRepository.swift in Sources */,
+				EDF5F08329C238C900E8C730 /* Loadable.swift in Sources */,
 				EDB5C96F29C0F94600EC3B77 /* MoviesRemoteDataSource.swift in Sources */,
 				EDB5C95329C0EF1400EC3B77 /* SceneDelegate.swift in Sources */,
+				EDF5F06F29C231C200E8C730 /* AppCoordinator.swift in Sources */,
 				EDB5C96C29C0F91C00EC3B77 /* Authentication.swift in Sources */,
+				EDF5F07929C2354000E8C730 /* MoviesListViewModel.swift in Sources */,
 				EDB5C96D29C0F91D00EC3B77 /* RemoteDataSource.swift in Sources */,
 				EDB5C96B29C0F91C00EC3B77 /* RemoteCall.swift in Sources */,
 			);

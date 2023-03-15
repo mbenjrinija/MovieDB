@@ -8,7 +8,22 @@
 import Foundation
 
 struct PaginatedList<Item> {
-  let page: Int?
-  let results: [Item]?
+  var page: Int?
+  var results: [Item]?
   let totalPages, totalResults: Int?
+  
+  func nextPage() -> Int? {
+    guard let page, let totalPages else { return nil }
+    return page < totalPages ? page + 1 : nil
+  }
+  
+  mutating func reset(items: [Item]? = nil) {
+    self.page = 1
+    self.results = items
+  }
+  
+  mutating func onNext(page: Int, items: [Item]) {
+    self.page = page
+    self.results?.append(contentsOf: items)
+  }
 }

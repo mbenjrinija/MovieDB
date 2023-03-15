@@ -10,7 +10,7 @@ import Foundation
 // MARK: API Calls enum
 extension MoviesRemoteDataSourceMain {
   enum Call {
-    case getMovies
+    case getMovies(page: Int)
     case getMovieDetails(id: Int)
   }
 }
@@ -18,7 +18,7 @@ extension MoviesRemoteDataSourceMain {
 
 // MARK: API Calls config
 extension MoviesRemoteDataSourceMain.Call: RemoteCall {
-  var auth: AuthStrategy { NoAuth() }
+  var auth: AuthStrategy { AuthDefault() }
   
   var path: String {
     switch self {
@@ -41,7 +41,12 @@ extension MoviesRemoteDataSourceMain.Call: RemoteCall {
   }
   
   var params: [String: String]? {
-    nil // no default params
+    switch self {
+    case .getMovies(let page):
+      return ["page": "\(page)"]
+    default :
+      return nil
+    }
   }
   
   func body() throws -> Data? {

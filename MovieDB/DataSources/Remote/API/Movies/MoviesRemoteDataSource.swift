@@ -10,7 +10,7 @@ import Combine
 
 // MARK: Protocol
 protocol MoviesRemoteDataSource: RemoteDataSource {
-  func fetchMovies() async throws -> PaginatedList<Movie>
+  func fetchMovies(page: Int) async throws -> PaginatedList<Movie>
   func fetchMovieDetails(id: Int) async throws -> MovieDetails
 }
 
@@ -18,8 +18,8 @@ protocol MoviesRemoteDataSource: RemoteDataSource {
 struct MoviesRemoteDataSourceMain: MoviesRemoteDataSource {
   let session: URLSession
 
-  func fetchMovies() async throws -> PaginatedList<Movie> {
-    try await fetch(call: Call.getMovies)
+  func fetchMovies(page: Int) async throws -> PaginatedList<Movie> {
+    try await fetch(call: Call.getMovies(page: page))
        .map { (response: MoviesListRemoteModel) -> PaginatedList<Movie> in
          response.transform()
       }

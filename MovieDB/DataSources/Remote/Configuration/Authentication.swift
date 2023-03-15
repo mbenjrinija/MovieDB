@@ -15,10 +15,12 @@ protocol AuthStrategy {
   func patch(headers: [String: String]?) -> [String: String]?
 }
 
-struct NoAuth: AuthStrategy {
+struct AuthDefault: AuthStrategy {
 
   func patch(params: [String: String]?) -> [String: String]? {
-    return params
+    var patchedParams = params ?? [:]
+    patchedParams["api_key"] = Constants.API.apiKey
+    return patchedParams
   }
 
   func patch(headers: [String: String]?) -> [String: String]? {
