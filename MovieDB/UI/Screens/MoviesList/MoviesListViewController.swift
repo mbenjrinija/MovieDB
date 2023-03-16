@@ -39,19 +39,11 @@ class MoviesListViewController: UIViewController {
     viewModel.movies
       .receive(on: DispatchQueue.main)
       .sink(receiveValue: { [weak self] movies in
-        print(movies)
+        self?.refreshControl.endRefreshing()
         var snapshot = NSDiffableDataSourceSnapshot<Int, Movie>()
         snapshot.appendSections([0])
         snapshot.appendItems(movies)
         self?.dataSource.apply(snapshot)
-      }).store(in: &bag)
-    // config loading animation
-    viewModel.isLoading
-      .receive(on: DispatchQueue.main)
-      .sink(receiveValue: { [weak self] isLoading in
-        if isLoading {
-          self?.tableview.showLoading()
-        }
       }).store(in: &bag)
       
     // config pull to refresh
@@ -61,7 +53,6 @@ class MoviesListViewController: UIViewController {
   }
   
   @objc func refresh(_ sender: AnyObject) {
-    refreshControl.endRefreshing()
     viewModel.refreshMovies()
   }
   
