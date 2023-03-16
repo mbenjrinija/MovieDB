@@ -14,6 +14,7 @@ class MoviesListViewController: UIViewController {
   
   @IBOutlet weak var tableview: UITableView!
   var dataSource: UITableViewDiffableDataSource<Int, Movie>!
+  let refreshControl = UIRefreshControl()
   var bag = DisposeBag()
   
   override func viewDidLoad() {
@@ -44,8 +45,25 @@ class MoviesListViewController: UIViewController {
         snapshot.appendItems(movies)
         self?.dataSource.apply(snapshot)
       }).store(in: &bag)
+    // config loading animation
+    viewModel.isLoading
+      .receive(on: DispatchQueue.main)
+      .sink(receiveValue: { [weak self] isLoading in
+        if isLoading {
+          self?.tableview.showLoading()
+        }
+      }).store(in: &bag)
+      
+    // config pull to refresh
+    refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+    refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+    tableview.addSubview(refreshControl)
   }
   
+  @objc func refresh(_ sender: AnyObject) {
+    refreshControl.endRefreshing()
+    viewModel.refreshMovies()
+  }
   
 }
 

@@ -27,11 +27,11 @@ class MovieTableViewCell: UITableViewCell {
   
   func setup() {
     if let posterString = movie.posterPath,
-       let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterString)") {
+       let posterURL = URL(string: "\(Constants.API.imagesBaseUrl)\(posterString)") {
       poster.load(url: posterURL, placeholder: nil)
     }
     title.text = movie.title ?? "-"
     year.text = movie.releaseDate ?? "-"
-    rating.text = "⭐ \(Int(movie.voteAverage ?? 0))%"
+    rating.text = "⭐ \(Int(movie.voteAverage ?? 0))/100"
   }
 }

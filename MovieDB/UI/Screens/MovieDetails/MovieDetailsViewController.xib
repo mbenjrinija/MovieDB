@@ -11,6 +11,8 @@
             <connections>
                 <outlet property="descLabel" destination="hr4-yq-aMX" id="h5T-MN-Kmu"/>
                 <outlet property="genresLabel" destination="XPc-wq-Woz" id="ht9-Ax-xYg"/>
+                <outlet property="loadingIndicator" destination="4fW-aE-IP6" id="g1O-4A-H7d"/>
+                <outlet property="mainView" destination="WKK-Wd-EBc" id="nhF-e1-jAz"/>
                 <outlet property="poster" destination="95U-TF-rJb" id="7Rk-hP-9Vl"/>
                 <outlet property="titleLabel" destination="Ifz-iT-4lJ" id="DTQ-ob-IXd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,11 +23,28 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKK-Wd-EBc">
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VxD-WD-4tK">
+                    <rect key="frame" x="154.66666666666666" y="412" width="80.666666666666657" height="20"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="4fW-aE-IP6">
+                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="4fW-aE-IP6" secondAttribute="height" multiplier="1:1" id="ZkQ-Vk-jS0"/>
+                            </constraints>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vw3-Sa-N6I">
+                            <rect key="frame" x="19.999999999999996" y="0.0" width="60.666666666666657" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WKK-Wd-EBc">
                     <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-80" translatesAutoresizingMaskIntoConstraints="NO" id="hE6-wY-Fxt">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="577.33333333333337"/>
+                            <rect key="frame" x="0.0" y="-47" width="390" height="577.33333333333337"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPM-q5-14u">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="500"/>
@@ -91,6 +110,7 @@
                             </constraints>
                         </stackView>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="hE6-wY-Fxt" firstAttribute="leading" secondItem="WKK-Wd-EBc" secondAttribute="leading" id="6kZ-vK-0m7"/>
                         <constraint firstItem="HqX-8b-Dof" firstAttribute="width" secondItem="WKK-Wd-EBc" secondAttribute="width" constant="-40" id="7Od-84-KRE"/>
@@ -113,7 +133,9 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="WKK-Wd-EBc" secondAttribute="bottom" id="D2Q-l9-055"/>
+                <constraint firstItem="VxD-WD-4tK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="PRm-BH-Ufo"/>
                 <constraint firstAttribute="trailing" secondItem="WKK-Wd-EBc" secondAttribute="trailing" id="QVh-N2-2eV"/>
+                <constraint firstItem="VxD-WD-4tK" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Vi0-jr-NLP"/>
                 <constraint firstItem="hE6-wY-Fxt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="etd-rP-qsi"/>
                 <constraint firstItem="WKK-Wd-EBc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pkU-Ua-kCJ"/>
                 <constraint firstItem="WKK-Wd-EBc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rxI-GE-49b"/>
