@@ -19,7 +19,17 @@ class AppCoordinator: Coordinator {
   }
   
   func start() {
-    // init app
+    let moviesRemoteDataSource = MoviesRemoteDataSourceMain(session: .default)
+    let moviesRepository = MoviesRepositoryMain(remoteMovies: moviesRemoteDataSource)
+    let viewModel = MoviesListViewModel(repository: moviesRepository,
+                      goToDetails: { [weak self] in self?.goToDetailsOf(movie: $0) })
+    let viewController = MoviesListViewController(nibName: "MoviesListViewController", bundle: nil)
+    viewController.viewModel = viewModel
+    navigationController.pushViewController(viewController, animated: true)
+  }
+  
+  func goToDetailsOf(movie: Movie) {
+    
   }
   
 }

@@ -28,4 +28,12 @@ enum Loadable<T> {
     default: return nil
     }
   }
+  
+  var isLoading: Bool {
+    switch self {
+    case .loading(_): return true
+    default: return false
+    }
+  }
+  
 }

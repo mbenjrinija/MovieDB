@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie {
+struct Movie: Hashable {
   let id: Int?
   let title, originalTitle, posterPath, releaseDate: String?
   let voteAverage: Double?
