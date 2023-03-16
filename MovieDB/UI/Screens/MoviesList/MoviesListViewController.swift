@@ -35,13 +35,15 @@ class MoviesListViewController: UIViewController {
     tableview.dataSource = dataSource
     
     // bind publisher with tabelview
-    viewModel.movies.sink(receiveValue: { [weak self] movies in
-      print(movies)
-      var snapshot = NSDiffableDataSourceSnapshot<Int, Movie>()
-      snapshot.appendSections([0])
-      snapshot.appendItems(movies)
-      self?.dataSource.apply(snapshot)
-    }).store(in: &bag)
+    viewModel.movies
+      .receive(on: DispatchQueue.main)
+      .sink(receiveValue: { [weak self] movies in
+        print(movies)
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Movie>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(movies)
+        self?.dataSource.apply(snapshot)
+      }).store(in: &bag)
   }
   
   
@@ -55,4 +57,9 @@ extension MoviesListViewController: UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { 200 }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let movie = dataSource.itemIdentifier(for: indexPath) else { return }
+    viewModel.didSelect(movie: movie)
+  }
 }

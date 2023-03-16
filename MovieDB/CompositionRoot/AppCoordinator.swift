@@ -19,8 +19,7 @@ class AppCoordinator: Coordinator {
   }
   
   func start() {
-    let moviesRemoteDataSource = MoviesRemoteDataSourceMain(session: .default)
-    let moviesRepository = MoviesRepositoryMain(remoteMovies: moviesRemoteDataSource)
+    let moviesRepository = composeMoviesRepository()
     let viewModel = MoviesListViewModel(repository: moviesRepository,
                       goToDetails: { [weak self] in self?.goToDetailsOf(movie: $0) })
     let viewController = MoviesListViewController(nibName: "MoviesListViewController", bundle: nil)
@@ -29,7 +28,19 @@ class AppCoordinator: Coordinator {
   }
   
   func goToDetailsOf(movie: Movie) {
-    
+    let moviesRepository = composeMoviesRepository()
+    let viewModel = MovieDetailsViewModel(repository: moviesRepository, movie: movie)
+    let viewController = MovieDetailsViewController(nibName: "MovieDetailsViewController", bundle: nil)
+    viewController.viewModel = viewModel
+    navigationController.pushViewController(viewController, animated: true)
   }
   
+  
+  // MARK: composers
+  
+  func composeMoviesRepository() -> MoviesRepositoryMain {
+    let moviesRemoteDataSource = MoviesRemoteDataSourceMain(session: .default)
+    let moviesRepository = MoviesRepositoryMain(remoteMovies: moviesRemoteDataSource)
+    return moviesRepository
+  }
 }
