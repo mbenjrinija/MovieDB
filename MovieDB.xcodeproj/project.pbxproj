@@ -30,6 +30,7 @@
 		EDB5C97B29C0FE1400EC3B77 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB5C97A29C0FE1400EC3B77 /* Async.swift */; };
 		EDB5C97D29C1013F00EC3B77 /* MovieDetailRemoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB5C97C29C1013F00EC3B77 /* MovieDetailRemoteModel.swift */; };
 		EDD5714B29C2CD5500B079EA /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD5714A29C2CD5500B079EA /* GradientView.swift */; };
+		EDDACB8529C3503A005ABCF0 /* Sequence+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDACB8429C3503A005ABCF0 /* Sequence+Extention.swift */; };
 		EDF5F06129C2237900E8C730 /* PaginatedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F06029C2237900E8C730 /* PaginatedList.swift */; };
 		EDF5F06329C2276500E8C730 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F06229C2276500E8C730 /* MovieDetails.swift */; };
 		EDF5F06529C229D200E8C730 /* RemoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5F06429C229D200E8C730 /* RemoteModel.swift */; };
@@ -69,6 +70,7 @@
 		EDB5C97A29C0FE1400EC3B77 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		EDB5C97C29C1013F00EC3B77 /* MovieDetailRemoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailRemoteModel.swift; sourceTree = "<group>"; };
 		EDD5714A29C2CD5500B079EA /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		EDDACB8429C3503A005ABCF0 /* Sequence+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extention.swift"; sourceTree = "<group>"; };
 		EDF5F06029C2237900E8C730 /* PaginatedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedList.swift; sourceTree = "<group>"; };
 		EDF5F06229C2276500E8C730 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		EDF5F06429C229D200E8C730 /* RemoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteModel.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				ED0F2AE729C2A84F0041F6E1 /* UITabeView+Extention.swift */,
 				ED0F2AEE29C2BC3B0041F6E1 /* UIImageView+Extention.swift */,
+				EDDACB8429C3503A005ABCF0 /* Sequence+Extention.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			files = (
 				EDB5C97329C0FAA600EC3B77 /* MovieRemoteModel.swift in Sources */,
 				EDF5F06129C2237900E8C730 /* PaginatedList.swift in Sources */,
+				EDDACB8529C3503A005ABCF0 /* Sequence+Extention.swift in Sources */,
 				ED0F2AEC29C2AD420041F6E1 /* MovieDetailsViewController.swift in Sources */,
 				EDB5C97929C0FD2700EC3B77 /* Constants.swift in Sources */,
 				EDB5C95529C0EF1400EC3B77 /* ViewController.swift in Sources */,
