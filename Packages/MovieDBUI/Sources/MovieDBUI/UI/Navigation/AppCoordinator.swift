@@ -23,7 +23,7 @@ public class AppCoordinatorMain: AppCoordinator {
   public var parentCoordinator: Coordinator? = nil
   public var children: [Coordinator] = []
   public var navigationController: UINavigationController
-  weak var dependencyFactory: AppCoordinatorDependencyFactory?
+  private weak var dependencyFactory: AppCoordinatorDependencyFactory?
   
   public init(navigationController: UINavigationController, dependencyFactory: AppCoordinatorDependencyFactory) {
     self.navigationController = navigationController

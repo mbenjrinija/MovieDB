@@ -15,7 +15,7 @@ protocol RemoteCall {
   var method: String { get }
   var headers: [String: String]? { get }
   var params: [String: String]? { get }
-  func body() throws -> Data?
+  var body: Data? { get throws }
   var auth: AuthStrategy { get }
 }
 
@@ -34,7 +34,7 @@ extension RemoteCall {
     var request = URLRequest(url: url)
     request.httpMethod = method
     request.allHTTPHeaderFields = auth.patch(headers: headers)
-    request.httpBody = try body()
+    request.httpBody = try body
     return request
   }
 }

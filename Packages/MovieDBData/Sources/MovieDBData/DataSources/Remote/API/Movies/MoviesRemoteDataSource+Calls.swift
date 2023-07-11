@@ -49,8 +49,10 @@ extension MoviesRemoteDataSourceMain.Call: RemoteCall {
     }
   }
   
-  func body() throws -> Data? {
-    nil // no default body
+  var body: Data? {
+    get throws {
+      nil
+    }
   }
   
 }

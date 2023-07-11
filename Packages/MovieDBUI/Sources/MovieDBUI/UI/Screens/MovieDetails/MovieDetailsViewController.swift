@@ -30,27 +30,25 @@ public class MovieDetailsViewController: UIViewController, NibLoadable {
   }
   
   func setup() {
-    viewModel.$movieDetails
-      .map(\.value)
-      .replaceError(with: nil)
-      .compactMap { $0 }
-      .receive(on: DispatchQueue.main)
-      .sink(receiveValue: { [weak self] movieDetail in
-        if let posterURL = self?.viewModel.posterURL {
-          self?.poster.load(url: posterURL, placeholder: nil)
-        }
-        self?.titleLabel.text = movieDetail.title ?? "-"
-        self?.descLabel.text = movieDetail.overview ?? "-"
-        self?.genresLabel.text = movieDetail.genres?
-          .compactMap { $0.name }.joined(separator: ", ") ?? "-"
-      }).store(in: &bag)
+    viewModel.$posterURL.sink { [weak self] in
+      self?.poster.load(url: $0, placeholder: nil)
+    }.store(in: &bag)
     
-    viewModel.$movieDetails
-      .map(\.isLoading)
-      .receive(on: DispatchQueue.main)
-      .sink(receiveValue: { [weak self] isLoading in
-        self?.showLoading(isLoading)
-      }).store(in: &bag)
+    viewModel.$title.sink { [weak self] in
+      self?.titleLabel.text = $0
+    }.store(in: &bag)
+    
+    viewModel.$description.sink { [weak self] in
+      self?.descLabel.text = $0
+    }.store(in: &bag)
+    
+    viewModel.$genres.sink { [weak self] in
+      self?.genresLabel.text = $0
+    }.store(in: &bag)
+    
+    viewModel.$isLoading.sink { [weak self] in
+      self?.showLoading($0)
+    }.store(in: &bag)
     
     navigationController?.setNavigationBarHidden(true, animated: false)
   }

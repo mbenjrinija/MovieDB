@@ -12,7 +12,7 @@ import MovieDBCore
 // handles data sources related to movies
 public class MoviesRepositoryMain: MoviesRepository {
   
-  var remoteMovies: MoviesRemoteDataSource
+  let remoteMovies: MoviesRemoteDataSource
   
   public init(remoteMovies: MoviesRemoteDataSource) {
     self.remoteMovies = remoteMovies

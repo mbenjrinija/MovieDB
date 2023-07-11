@@ -11,18 +11,42 @@ import MovieDBCore
 
 public class MovieDetailsViewModel {
   
-  let repository: MoviesRepository
-  let movie: Movie
+  private let repository: MoviesRepository
+  private let movie: Movie
   
-  @Published var movieDetails: Loadable<MovieDetails> = .notLoaded
+  @Published private var movieDetails: Loadable<MovieDetails> = .notLoaded
   
-  var posterURL: URL? {
-    repository.urlFor(posterPath: movie.posterPath)
-  }
+  /// derived attributes
+  @Published var title: String = ""
+  @Published var description: String = ""
+  @Published var genres: String = ""
+  @Published var posterURL: URL?
+  @Published var isLoading: Bool = false
+  private var bag = DisposeBag()
   
   public init(repository: MoviesRepository, movie: Movie) {
     self.repository = repository
     self.movie = movie
+    setup()
+  }
+  
+  func setup() {
+    posterURL = repository.urlFor(posterPath: movie.posterPath)
+    $movieDetails.map(\.value)
+      .replaceError(with: nil)
+      .compactMap { $0 }
+      .receive(on: DispatchQueue.main)
+      .sink(receiveValue: { [weak self] movieDetail in
+        self?.title = movieDetail.title ?? "-"
+        self?.description = movieDetail.overview ?? "-"
+        self?.genres = movieDetail.genres?
+          .compactMap { $0.name }.joined(separator: ", ") ?? "-"
+      }).store(in: &bag)
+    $movieDetails
+      .map(\.isLoading)
+      .receive(on: DispatchQueue.main)
+      .assign(to: \.isLoading, on: self)
+      .store(in: &bag)
   }
   
   func loadDetails() {

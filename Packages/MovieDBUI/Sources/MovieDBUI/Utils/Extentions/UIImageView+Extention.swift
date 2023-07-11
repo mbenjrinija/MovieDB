@@ -9,7 +9,9 @@ import UIKit
 
 extension UIImageView {
   
-  func load(url: URL, placeholder: UIImage?, cache: URLCache? = nil) {
+  // basic implementation for showcase, a production app should have a more robust solution
+  func load(url: URL?, placeholder: UIImage?, cache: URLCache? = nil) {
+    guard let url else { return }
     let cache = cache ?? URLCache.shared
     let request = URLRequest(url: url)
     

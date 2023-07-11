@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Dependency Injection Container
+// basic implementation for showcase, a production app should have a more robust solution
 class DIContainer: Injector {
   static var `default` = DIContainer()
   private var components = [String: Any]()
