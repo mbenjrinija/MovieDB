@@ -19,22 +19,26 @@ extension DIContainer {
     
     // configure DataSources
     Self.default
-      .register(.Data.DataSource.Remote.movies) { _ in
-        MoviesRemoteDataSourceMain(session: urlSession)
-      }.register(.Data.DataSource.Remote.images) { _ in
-        RemoteImageSourceMain(session: urlSession)
-      }.register(.Data.DataSource.Local.images) { _ in
+      .register(.Data.Source.Remote.networkManager) { _ in
+        NetworkManagerMain(session: urlSession)
+      }.register(.Data.Source.Remote.movies) { resolver in
+        MoviesRemoteDataSourceMain(
+          networkManager: try resolver.resolve(.Data.Source.Remote.networkManager))
+      }.register(.Data.Source.Remote.images) { resolver in
+        RemoteImageSourceMain(
+          networkManager: try resolver.resolve(.Data.Source.Remote.networkManager))
+      }.register(.Data.Source.Local.images) { _ in
         LocalImageSourceMemory()
       }
     
     // configure Repositories
     Self.default
       .register(.Data.Repository.Remote.movies) { resolver in
-        MoviesRepositoryMain(remoteMovies: try resolver.resolve(.Data.DataSource.Remote.movies))
+        MoviesRepositoryMain(remoteMovies: try resolver.resolve(.Data.Source.Remote.movies))
       }.register(.Data.Repository.images) { resolver in
         ImageRepositoryMain(
-          localImageSource: try resolver.resolve(.Data.DataSource.Local.images),
-          remoteImageSource: try resolver.resolve(.Data.DataSource.Remote.images))
+          localImageSource: try resolver.resolve(.Data.Source.Local.images),
+          remoteImageSource: try resolver.resolve(.Data.Source.Remote.images))
       }
     
     // configure Domain Intractors

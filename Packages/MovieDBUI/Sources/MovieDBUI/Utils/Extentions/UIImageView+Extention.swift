@@ -21,7 +21,8 @@ extension UIImageView {
       }
     } else {
       self.image = placeholder
-      
+      // for demo convenience only
+      // normally this should be done using the NetworkManager protocol and not through urlsession
       URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
         guard let data = data, let httpResponse = response as? HTTPURLResponse, 200...299 ~= httpResponse.statusCode, let image = UIImage(data: data) else { return }
         

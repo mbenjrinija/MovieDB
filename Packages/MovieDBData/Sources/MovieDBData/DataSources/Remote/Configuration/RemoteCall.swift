@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import MovieDBCore
 
-protocol RemoteCall {
+public protocol RemoteCall {
   var baseURL: String { get }
   var path: String { get }
   var method: String { get }

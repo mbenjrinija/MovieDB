@@ -23,7 +23,7 @@ extension Injectable {
     struct Interactor { }
   }
   struct Data {
-    struct DataSource {
+    struct Source {
       struct Remote { }
       struct Local { }
     }
@@ -39,11 +39,12 @@ extension Injectable.Domain.Interactor {
   static var analytics: Injectable<AnalyticsService> { .init() }
 }
 
-extension Injectable.Data.DataSource.Local {
+extension Injectable.Data.Source.Local {
   static var images: Injectable<LocalImageSource> { .init() }
 }
 
-extension Injectable.Data.DataSource.Remote {
+extension Injectable.Data.Source.Remote {
+  static var networkManager: Injectable<NetworkManager> { .init() }
   static var movies: Injectable<MoviesRemoteDataSource> { .init() }
   static var images: Injectable<RemoteImageSource> { .init() }
 }

@@ -12,7 +12,7 @@ import MovieDBCore
 // no auth neeed in this project
 // this file is just for showcase
 
-protocol AuthStrategy {
+public protocol AuthStrategy {
   func patch(params: [String: String]?) -> [String: String]?
   func patch(headers: [String: String]?) -> [String: String]?
 }

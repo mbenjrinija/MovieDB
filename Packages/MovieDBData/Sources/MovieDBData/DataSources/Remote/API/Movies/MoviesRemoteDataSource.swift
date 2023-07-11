@@ -17,10 +17,10 @@ public protocol MoviesRemoteDataSource: RemoteDataSource {
 
 // MARK: Main Impl
 public struct MoviesRemoteDataSourceMain: MoviesRemoteDataSource {
-  public let session: URLSession
-
-  public init(session: URLSession) {
-    self.session = session
+  public var networkManager: NetworkManager
+  
+  public init(networkManager: NetworkManager) {
+    self.networkManager = networkManager
   }
   
   public func fetchMovies(page: Int) async throws -> PaginatedList<Movie> {
