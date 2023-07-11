@@ -37,7 +37,7 @@ public class MovieDetailsViewModel {
       .compactMap { $0 }
       .receive(on: DispatchQueue.main)
       .sink(receiveValue: { [weak self] movieDetail in
-        self?.title = movieDetail.title ?? "-"
+        self?.title = movieDetail.title
         self?.description = movieDetail.overview ?? "-"
         self?.genres = movieDetail.genres?
           .compactMap { $0.name }.joined(separator: ", ") ?? "-"
@@ -53,7 +53,7 @@ public class MovieDetailsViewModel {
     movieDetails = .loading(nil)
     Task {
       do {
-        let result = try await repository.fetchMovieDetails(id: movie.id!)
+        let result = try await repository.fetchMovieDetails(id: movie.id)
         movieDetails = .loaded(result)
       } catch(let error) {
         movieDetails = .failed(nil, error)

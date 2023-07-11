@@ -33,9 +33,9 @@ public struct MoviesRemoteDataSourceMain: MoviesRemoteDataSource {
   }
 
   public func fetchMovieDetails(id: Int) async throws -> MovieDetails {
-    try await fetch(call: Call.getMovieDetails(id: id))
-      .map { (response: MovieDetailRemoteModel) -> MovieDetails in
-        response.transform()
+    return try await fetch(call: Call.getMovieDetails(id: id))
+      .tryMap { (response: MovieDetailRemoteModel) throws -> MovieDetails in
+        try response.transform()
       }
       .eraseToAnyPublisher()
       .async()

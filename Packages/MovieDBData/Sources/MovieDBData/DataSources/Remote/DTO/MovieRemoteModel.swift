@@ -20,7 +20,8 @@ struct MovieRemoteModel: Codable {
     let originalLanguage: String?
     let originalTitle, overview: String?
     let popularity: Double?
-    let posterPath, releaseDate, title: String?
+    let posterPath, title: String?
+    let releaseDate: Date?
     let video: Bool?
     let voteAverage: Double?
     let voteCount: Int?
@@ -43,12 +44,12 @@ struct MovieRemoteModel: Codable {
 
 // MARK: - Transformation to Domain Models
 extension MovieRemoteModel: RemoteModel {
-  func transform() -> Movie {
-    Movie(id: id,
-          title: title,
-          originalTitle: originalTitle,
-          posterPath: posterPath,
-          releaseDate: releaseDate,
+  func transform() throws -> Movie {
+    Movie(id: try unwrap(id),
+          title: try unwrap(title),
+          originalTitle: try unwrap(originalTitle),
+          posterPath: try unwrap(posterPath),
+          releaseDate: try unwrap(releaseDate),
           voteAverage: voteAverage)
   }
 }

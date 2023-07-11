@@ -8,11 +8,14 @@
 import Foundation
 
 public struct Movie: Hashable {
-  public let id: Int?
-  public let title, originalTitle, posterPath, releaseDate: String?
+  public let id: Int
+  public let title, originalTitle, posterPath: String
+  public let releaseDate: Date?
   public let voteAverage: Double?
   
-  public init(id: Int?, title: String?, originalTitle: String?, posterPath: String?, releaseDate: String?, voteAverage: Double?) {
+  public init(id: Int, title: String, originalTitle: String,
+              posterPath: String, releaseDate: Date?,
+              voteAverage: Double?) {
     self.id = id
     self.title = title
     self.originalTitle = originalTitle

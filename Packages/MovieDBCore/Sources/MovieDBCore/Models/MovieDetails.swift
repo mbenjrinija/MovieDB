@@ -8,8 +8,8 @@
 import Foundation
 
 public struct MovieDetails {
-  public let id: Int?
-  public let title: String?
+  public let id: Int
+  public let title: String
   public let releaseDate: String?
   public let genres: [MovieGenre]?
   public let overview: String?
@@ -19,7 +19,7 @@ public struct MovieDetails {
   public let posterPath: String?
   public let backdropPath: String?
   
-  public init(id: Int?, title: String?, releaseDate: String?, genres: [MovieGenre]?, overview: String?, popularity: Double?, runtime: Int?, voteAverage: Double?, posterPath: String?, backdropPath: String?) {
+  public init(id: Int, title: String, releaseDate: String?, genres: [MovieGenre]?, overview: String?, popularity: Double?, runtime: Int?, voteAverage: Double?, posterPath: String?, backdropPath: String?) {
     self.id = id
     self.title = title
     self.releaseDate = releaseDate

@@ -50,9 +50,9 @@ struct MovieGenreRemoteModel: Codable {
 
 // MARK: - Transformation to Domain Models
 extension MovieDetailRemoteModel: RemoteModel {
-  func transform() -> MovieDetails {
-    MovieDetails(id: id,
-                 title: title,
+  func transform() throws -> MovieDetails {
+    MovieDetails(id: try unwrap(id),
+                 title: try unwrap(title),
                  releaseDate: releaseDate,
                  genres: genres?.map{ $0.transform() },
                  overview: overview,

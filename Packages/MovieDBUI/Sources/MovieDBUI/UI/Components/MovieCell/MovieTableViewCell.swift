@@ -8,17 +8,10 @@
 import UIKit
 import MovieDBCore
 
-struct MovieCellViewModel: Hashable {
-  var movie: Movie
-  var posterURL: URL?
-}
-
 class MovieTableViewCell: UITableViewCell {
   
   var viewModel: MovieCellViewModel! {
-    didSet {
-      setup()
-    }
+    didSet { setup() }
   }
   
   @IBOutlet weak var poster: UIImageView!
@@ -32,12 +25,9 @@ class MovieTableViewCell: UITableViewCell {
   }
   
   func setup() {
-    if let posterURL = viewModel.posterURL {
-      poster.load(url: posterURL, placeholder: nil)
-    }
-    let movie = viewModel.movie
-    title.text = movie.title ?? "-"
-    year.text = movie.releaseDate ?? "-"
-    rating.text = "⭐ \(Int(movie.voteAverage ?? 0))/100"
+    poster.load(url: viewModel.posterURL, placeholder: nil)
+    title.text = viewModel.title
+    year.text = viewModel.releaseDate
+    rating.text = viewModel.rating
   }
 }

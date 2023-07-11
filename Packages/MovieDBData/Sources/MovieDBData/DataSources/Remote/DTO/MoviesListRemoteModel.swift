@@ -29,7 +29,8 @@ extension MoviesListRemoteModel: RemoteModel {
   func transform() -> PaginatedList<Movie> {
     PaginatedList(
       page: page,
-      results: results?.map { $0.transform() },
+      // ignore failed transformations
+      results: results?.compactMap { try? $0.transform() },
       totalPages: totalPages,
       totalResults: totalResults)
   }
